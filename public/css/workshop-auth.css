@@ -1,0 +1,70 @@
+/* Workshop Login/Signup Styles */
+body {
+  font-family: Arial, sans-serif;
+  background: #f2f6f8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.container {
+  background: #fff;
+  padding: 40px 30px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  width: 350px;
+  text-align: center;
+}
+
+.container h1 {
+  margin-bottom: 25px;
+  color: #333;
+  font-size: 24px;
+}
+
+.container input {
+  width: 100%;
+  padding: 12px 10px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.container button {
+  width: 100%;
+  padding: 12px;
+  margin-top: 15px;
+  background-color: #ff00e6;
+  color: #fff;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.container button:hover {
+  background-color: #b30098;
+}
+
+.container p {
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+.container a {
+  color: #ff00f7;
+  text-decoration: none;
+}
+
+.container a:hover {
+  text-decoration: underline;
+}
+
+p.error {
+  color: red;
+  font-weight: bold;
+}

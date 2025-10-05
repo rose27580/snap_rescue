@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Dashboard</title>
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+
+  <link rel="stylesheet" href="/css/user.css">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f6f8;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      background-color: #007BFF;
+      color: white;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.5rem;
+    }
+
+    header nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 1rem;
+      font-weight: bold;
+    }
+
+    main {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 1rem;
+    }
+
+    .breakdown-requests table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+      background-color: white;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    }
+
+    .breakdown-requests th, .breakdown-requests td {
+      border: 1px solid #ddd;
+      padding: 0.75rem;
+      text-align: left;
+    }
+
+    .breakdown-requests th {
+      background-color: #f0f0f0;
+    }
+
+    .breakdown-requests tr:nth-child(even) {
+      background-color: #fafafa;
+    }
+
+    .breakdown-requests tr:hover {
+      background-color: #f1f1f1;
+    }
+
+    .no-requests {
+      background-color: #fff;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      text-align: center;
+      margin-top: 1rem;
+      color: #666;
+    }
+
+    /* Map and form styling */
+    #map {
+      height: 300px;
+      width: 100%;
+      margin-top: 1rem;
+      border: 1px solid #ddd;
+    }
+
+    .breakdown-form {
+      background-color: white;
+      padding: 1rem;
+      border-radius: 5px;
+      box-shadow: 0 0 5px rgba(0,0,0,0.1);
+      margin-bottom: 2rem;
+    }
+
+    .breakdown-form textarea {
+      width: 100%;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      resize: vertical;
+    }
+
+    .breakdown-form button {
+      background-color: #007BFF;
+      color: white;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    .breakdown-form button:hover {
+      background-color: #0056b3;
+    }
+
+    @media (max-width: 768px) {
+      .breakdown-requests table, .breakdown-requests th, .breakdown-requests td {
+        font-size: 0.9rem;
+      }
+
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      header nav {
+        margin-top: 0.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Welcome, <%= user.name %> 👋</h1>
+    <nav>
+      <a href="/user/profile">Profile</a>
+      <a href="/user/logout">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <!-- Submit New Breakdown -->
+    <section class="breakdown-form">
+      <h2>Submit New Breakdown</h2>
+      <form action="/user/breakdown" method="POST">
+        <textarea name="description" placeholder="Describe your vehicle issue" required></textarea>
+        <div id="map"></div>
+        <input type="hidden" name="lat" id="lat" required>
+        <input type="hidden" name="lng" id="lng" required>
+        <p id="location-status">Click on the map to select your location</p>
+        <button type="submit">Submit Request</button>
+      </form>
+    </section>
+
+    <!-- Submitted Requests -->
+    <section class="breakdown-requests">
+      <h2>Your Submitted Breakdown Requests</h2>
+
+      <% if (requests.length === 0) { %>
+        <div class="no-requests">No breakdown requests submitted yet.</div>
+      <% } else { %>
+        <table>
+          <thead>
+            <tr>
+              <th>Description</th>
+              <th>Status</th>
+              <th>Workshop</th>
+              <th>Submitted At</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% requests.forEach(req => { %>
+              <tr>
+                <td><%= req.description %></td>
+                <td><%= req.status %></td>
+                <td><%= req.workshop ? req.workshop.name : "Not Assigned" %></td>
+                <td><%= new Date(req.createdAt).toLocaleString() %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      <% } %>
+    </section>
+  </main>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script>
+    // Initialize map
+    const map = L.map('map').setView([20.5937, 78.9629], 5); // Centered on India
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    let marker;
+    map.on('click', function(e) {
+      const { lat, lng } = e.latlng;
+      document.getElementById('lat').value = lat;
+      document.getElementById('lng').value = lng;
+
+      if (marker) map.removeLayer(marker);
+      marker = L.marker([lat, lng]).addTo(map);
+
+      document.getElementById('location-status').innerText = "✅ Location selected!";
+    });
+  </script>
+</body>
+</html>

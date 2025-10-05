@@ -1,0 +1,227 @@
+/* Reset some basics */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background-color: #f4f6f8;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* Header */
+header {
+  background-color: #ff00bf;
+  color: white;
+  padding: 1rem 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+header h1 {
+  font-size: 1.5rem;
+}
+
+header nav a {
+  color: white;
+  text-decoration: none;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+header nav a:hover {
+  text-decoration: underline;
+}
+
+/* Main content */
+main {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 1rem;
+}
+
+/* Sections */
+section {
+  margin-bottom: 3rem;
+}
+
+section h2 {
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+  color: #6f00ff;
+}
+
+/* Tables */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #fff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+table th, table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+table th {
+  background-color: #f0f0f0;
+  font-weight: bold;
+}
+
+table tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+table tr:hover {
+  background-color: #f1f1f1;
+}
+
+table a {
+  color: #6f00ff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+table a:hover {
+  text-decoration: underline;
+}
+
+/* Responsive tables */
+@media (max-width: 768px) {
+  table th, table td {
+    padding: 0.5rem;
+    font-size: 0.85rem;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  header nav {
+    margin-top: 0.5rem;
+  }
+}
+
+/* Optional: cards for stats (total users/workshops/requests) */
+.stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+
+.stats .card {
+  background-color: #ff00d4;
+  color: white;
+  padding: 1rem;
+  border-radius: 8px;
+  flex: 1;
+  min-width: 150px;
+  text-align: center;
+  box-shadow: 0 0 10px rgba(0,0,0,0.05);
+}
+
+.stats .card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.stats .card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Error / success messages */
+.message {
+  padding: 0.5rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+  color: white;
+}
+
+.message.error {
+  background-color: #dc3545;
+}
+
+.message.success {
+  background-color: #28a745;
+}
+/* Status colors */
+.status-pending {
+  color: #ffc107;
+  font-weight: bold;
+}
+.status-resolved {
+  color: #28a745;
+  font-weight: bold;
+}
+.status-declined {
+  color: #dc3545;
+  font-weight: bold;
+}
+
+/* Stats cards */
+.stats {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 2rem;
+}
+
+.stats .card {
+  background-color: #6f00ff;
+  color: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  flex: 1;
+  min-width: 180px;
+  text-align: center;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stats .card h3 {
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.stats .card p {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+/* Table scroll on small screens */
+.table-wrapper {
+  overflow-x: auto;
+}
+
+/* Optional: add action buttons in tables */
+.table-wrapper table a {
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.table-wrapper table a.approve {
+  background-color: #28a745;
+}
+
+.table-wrapper table a.delete {
+  background-color: #dc3545;
+}
+
+.table-wrapper table a.resolve {
+  background-color: #6a00ff;
+}
+

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title><%= role === "workshop" ? "Workshop Signup" : "User Signup" %></title>
+  <link rel="stylesheet" href="/css/auth.css">
+</head>
+<body>
+
+  <div class="auth-page">
+    <div class="auth-form-container">
+      <h2><%= role === "workshop" ? "Workshop Sign Up" : "User Sign Up" %></h2>
+
+      <!-- Signup form -->
+      <form action="/<%= role %>/signup" method="POST" class="auth-form">
+        <input type="text" name="name" placeholder="Full Name" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <input type="password" name="password" placeholder="Password" required />
+
+        <% if (role === "workshop") { %>
+          <!-- Only workshops need extra info -->
+          <input type="text" name="workshopName" placeholder="Workshop Name" required />
+          <input type="text" name="location" placeholder="Workshop Location" required />
+        <% } %>
+
+        <button type="submit">Sign Up</button>
+      </form>
+
+      <p>Already have an account? 
+        <a href="/<%= role %>/login">Login here</a>
+      </p>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard</title>
+<link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+<header>
+  <h1>Welcome, <%= admin.name %> 👑</h1>
+  <nav>
+    <a href="/admin/logout">Logout</a>
+  </nav>
+</header>
+
+<main>
+  <!-- Stats -->
+  <div class="stats">
+    <div class="card">
+      <h3>Total Users</h3>
+      <p><%= totalUsers %></p>
+    </div>
+    <div class="card">
+      <h3>Total Workshops</h3>
+      <p><%= totalWorkshops %></p>
+    </div>
+    <div class="card">
+      <h3>Total Requests</h3>
+      <p><%= totalBreakdowns %></p>
+    </div>
+  </div>
+
+  <!-- Users Table -->
+  <h2>Manage Users</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th><th>Email</th><th>Phone</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <td><%= u.name %></td>
+            <td><%= u.email %></td>
+            <td><%= u.phone || '-' %></td>
+            <td><a class="delete" href="/admin/users/delete/<%= u._id %>">Delete</a></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Workshops Table -->
+  <h2>Manage Workshops</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th><th>Email</th><th>Phone</th><th>Approved</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% workshops.forEach(w => { %>
+          <tr>
+            <td><%= w.name %></td>
+            <td><%= w.email %></td>
+            <td><%= w.phone || '-' %></td>
+            <td><%= w.approved ? 'Yes' : 'No' %></td>
+            <td>
+              <% if (!w.approved) { %>
+                <a class="approve" href="/admin/workshops/approve/<%= w._id %>">Approve</a>
+              <% } %>
+              <a class="delete" href="/admin/workshops/delete/<%= w._id %>">Delete</a>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Declined Requests Notification -->
+  <% if (declinedBreakdowns.length > 0) { %>
+    <h2>Declined Breakdown Requests</h2>
+    <div class="table-wrapper">
+      <table>
+        <thead>
+          <tr>
+            <th>User</th><th>Description</th><th>Previous Workshop</th><th>Reassign Workshop</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% declinedBreakdowns.forEach(b => { %>
+            <tr>
+              <td><%= b.user ? b.user.name : 'N/A' %></td>
+              <td><%= b.description %></td>
+              <td><%= b.workshop ? b.workshop.name : 'N/A' %></td>
+              <td>
+                <form method="POST" action="/admin/breakdowns/assign/<%= b._id %>">
+                  <select name="workshopId" required>
+                    <% workshops.forEach(w => { %>
+                      <% if (w.approved && (!b.workshop || w._id.toString() !== b.workshop._id.toString())) { %>
+                        <option value="<%= w._id %>"><%= w.name %></option>
+                      <% } %>
+                    <% }) %>
+                  </select>
+                  <button type="submit">Reassign</button>
+                </form>
+              </td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <!-- Breakdown Requests Table -->
+  <h2>Breakdown Requests</h2>
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>User</th><th>Description</th><th>Status</th><th>Workshop</th><th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% breakdowns.forEach(b => { %>
+          <tr>
+            <td><%= b.user ? b.user.name : 'N/A' %></td>
+            <td><%= b.description %></td>
+            <td class="status-<%= b.status.toLowerCase() %>"><%= b.status %></td>
+            <td>
+              <% if (b.status.toLowerCase() === 'pending') { %>
+                <form method="POST" action="/admin/breakdowns/assign/<%= b._id %>">
+                  <select name="workshopId" required>
+                    <% workshops.forEach(w => { %>
+                      <% if (w.approved) { %>
+                        <option value="<%= w._id %>"><%= w.name %></option>
+                      <% } %>
+                    <% }) %>
+                  </select>
+                  <button type="submit">Assign</button>
+                </form>
+              <% } else { %>
+                <%= b.workshop ? b.workshop.name : 'Not Assigned' %>
+              <% } %>
+            </td>
+            <td>
+              <% if (b.status.toLowerCase() !== 'resolved') { %>
+                <a class="resolve" href="/admin/breakdowns/resolve/<%= b._id %>">Resolve</a>
+              <% } %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+</main>
+</body>
+</html>

@@ -1,0 +1,355 @@
+/* =============================
+   Base Styles
+============================= */
+body {
+  font-family: 'Segoe UI', Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: #f4f6fb;
+  color: #333;
+  line-height: 1.6;
+}
+
+/* =============================
+   Header & Navigation
+============================= */
+header {
+  background: linear-gradient(135deg, #660ff1, #4b0fb5);
+  color: white;
+  padding: 50px 20px;
+  text-align: center;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2.8rem;
+  font-weight: bold;
+}
+
+header p {
+  margin-top: 8px;
+  font-style: italic;
+  font-size: 1.1rem;
+  opacity: 0.9;
+}
+
+nav {
+  margin-top: 20px;
+}
+
+nav a, nav button {
+  margin: 8px;
+  padding: 12px 18px;
+  background: white;
+  color: #660ff1;
+  border: none;
+  text-decoration: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+nav button:hover, nav a:hover {
+  background: #f0e8ff;
+  transform: translateY(-2px);
+}
+
+/* =============================
+   Hero Section
+============================= */
+.hero {
+  background: url('/images/road.jpg') no-repeat center center/cover;
+  color: white;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  height: 100%; width: 100%;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  animation: fadeIn 1.2s ease-in-out;
+}
+
+.hero h2 {
+  font-size: 3rem;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.hero p {
+  font-size: 1.3rem;
+  margin-bottom: 30px;
+  opacity: 0.95;
+}
+
+.cta-btn {
+  background: #ff4d4d;
+  color: white;
+  padding: 14px 28px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+}
+
+.cta-btn:hover {
+  background: #e60000;
+  transform: scale(1.05);
+}
+
+/* =============================
+   Forms
+============================= */
+.form-container, .auth-form-container {
+  max-width: 420px;
+  margin: 50px auto;
+  padding: 35px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+}
+
+input, select, button {
+  width: 100%;
+  padding: 12px 14px;
+  margin: 12px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+
+button {
+  background: #660ff1;
+  color: white;
+  font-weight: 500;
+  border: none;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+button:hover {
+  background: #4b0fb5;
+  transform: translateY(-2px);
+}
+
+/* =============================
+   Notification Button
+============================= */
+.notification-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #ff3b3f;
+  color: white;
+  border-radius: 50%;
+  padding: 12px 16px;
+  font-weight: bold;
+  font-size: 1rem;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+  transition: transform 0.2s ease;
+}
+
+.notification-btn:hover {
+  transform: scale(1.1);
+}
+
+.notification-bubble {
+  background: #ff0000;
+  color: white;
+  font-size: 0.7rem;
+  padding: 3px 7px;
+  border-radius: 50%;
+  position: absolute;
+  top: 5px;
+  right: 5px;
+}
+
+/* =============================
+   Messages
+============================= */
+.success-msg, .error-msg {
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 15px;
+  font-weight: 500;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.success-msg {
+  background: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.error-msg {
+  background: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* =============================
+   About Section
+============================= */
+.about {
+  padding: 60px 20px;
+  text-align: center;
+  background: #fff;
+}
+
+.about h2 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #660ff1;
+}
+
+.about-img {
+  max-width: 85%;
+  border-radius: 12px;
+  margin-top: 25px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+}
+
+/* =============================
+   Impact Section
+============================= */
+.impact {
+  text-align: center;
+  padding: 70px 20px;
+  background: linear-gradient(135deg, #660ff1, #4b0fb5);
+  color: #fff;
+}
+
+.impact-title {
+  font-size: 2.2rem;
+  margin-bottom: 50px;
+}
+
+.impact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 35px;
+}
+
+.impact-item {
+  background: rgba(28, 28, 28, 0.9);
+  padding: 35px;
+  border-radius: 14px;
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+
+.impact-item:hover {
+  transform: translateY(-8px);
+  background: #222;
+}
+
+.impact-item i {
+  font-size: 2.8rem;
+  margin-bottom: 15px;
+  color: #f9a825;
+}
+
+/* =============================
+   Contact Section
+============================= */
+.contact {
+  text-align: center;
+  padding: 70px 20px;
+  background: #f8f9fa;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  margin-bottom: 25px;
+  color: #333;
+}
+
+.contact p {
+  margin-bottom: 30px;
+  color: #555;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 25px;
+  max-width: 950px;
+  margin: 0 auto;
+}
+
+.contact-item {
+  background: #fff;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-item:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+}
+
+.contact-item i {
+  font-size: 2.2rem;
+  color: #f9a825;
+  margin-bottom: 12px;
+}
+
+.contact-item a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* =============================
+   Footer
+============================= */
+footer {
+  background: #222;
+  color: #ccc;
+  text-align: center;
+  padding: 25px;
+  font-size: 0.9rem;
+}
+
+/* =============================
+   Responsive
+============================= */
+@media screen and (max-width: 768px) {
+  header h1 { font-size: 2.2rem; }
+  .form-container { width: 90%; margin: 20px auto; }
+  nav a, nav button { display: block; margin: 8px auto; width: 90%; }
+}
+
+@media screen and (max-width: 600px) {
+  header h1 { font-size: 1.8rem; }
+  .form-container { padding: 20px; }
+  .hero h2 { font-size: 2.2rem; }
+  .cta-btn { width: 85%; font-size: 1rem; }
+}
+
+/* =============================
+   Animations
+============================= */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}

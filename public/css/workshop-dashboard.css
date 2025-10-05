@@ -1,0 +1,169 @@
+/* ------------------- General ------------------- */
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  margin: 0;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+h2 {
+  margin-bottom: 1rem;
+  color: #0052cc;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+/* ------------------- Header ------------------- */
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: linear-gradient(90deg, #0066ff, #0044cc);
+  color: white;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.dashboard-header h1 {
+  margin: 0;
+  font-size: 1.6rem;
+  font-weight: 600;
+}
+
+.logout-btn {
+  background: linear-gradient(90deg, #ff4d4f, #d9363e);
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.logout-btn:hover {
+  background: #b71c1c;
+  transform: translateY(-2px);
+}
+
+/* ------------------- Section Containers ------------------- */
+.section {
+  background: white;
+  margin: 1.5rem 2rem;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+.section h2 {
+  margin-top: 0;
+  margin-bottom: 1rem;
+  color: #333;
+  border-left: 5px solid #0052cc;
+  padding-left: 0.5rem;
+}
+
+/* ------------------- Tables ------------------- */
+.requests-table {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.requests-table th, 
+.requests-table td {
+  padding: 0.75rem 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e0e6ed;
+  font-size: 0.95rem;
+}
+
+.requests-table th {
+  background: #f0f4fa;
+  color: #0052cc;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+}
+
+.requests-table tr:nth-child(even) {
+  background: #fafcff;
+}
+
+.requests-table tr:hover {
+  background: #eef5ff;
+}
+
+/* ------------------- Status Badges ------------------- */
+.status {
+  display: inline-block;
+  padding: 0.35rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.status-pending {
+  background: #fff4e5;
+  color: #ff9800;
+}
+
+.status-in-progress {
+  background: #e6f7ff;
+  color: #007bff;
+}
+
+.status-completed {
+  background: #e6f9ed;
+  color: #28a745;
+}
+
+/* ------------------- Action Buttons ------------------- */
+.action-btn {
+  padding: 0.4rem 0.8rem;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.action-accept {
+  background: #28a745;
+  color: white;
+}
+
+.action-accept:hover {
+  background: #218838;
+}
+
+.action-decline {
+  background: #dc3545;
+  color: white;
+}
+
+.action-decline:hover {
+  background: #c82333;
+}
+
+.action-update {
+  background: #007bff;
+  color: white;
+}
+
+.action-update:hover {
+  background: #0056b3;
+}
+
+.view-location {
+  background: #17a2b8;
+  color: white;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  text-decoration: none;
+}
+
+.view-location:hover {
+  background: #117a8b;
+}

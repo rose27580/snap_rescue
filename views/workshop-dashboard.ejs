@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Workshop Dashboard | SnapRescue</title>
+  <link rel="stylesheet" href="/css/workshop-dashboard.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+  <header class="dashboard-header">
+    <h1>Welcome, <%= workshop.name %> 👋</h1>
+    <a href="/workshop/logout" class="logout-btn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+  </header>
+
+  <main class="dashboard-main">
+
+    <!-- 🔔 New Breakdown Requests -->
+    <section>
+      <h2>New Breakdown Requests</h2>
+      <% if (newRequests.length === 0) { %>
+        <p class="no-requests">No new requests.</p>
+      <% } else { %>
+        <div class="table-wrapper">
+          <table class="requests-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Description</th>
+                <th>Location</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% newRequests.forEach(r => { %>
+                <tr>
+                  <td><%= r.user?.name || 'N/A' %></td>
+                  <td><%= r.user?.email || 'N/A' %></td>
+                  <td><%= r.user?.phone || 'N/A' %></td>
+                  <td><%= r.description %></td>
+                  <td>
+                    <% if(r.location?.lat && r.location?.lng) { %>
+                      <a href="https://www.google.com/maps?q=<%= r.location.lat %>,<%= r.location.lng %>" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View
+                      </a>
+                    <% } else { %>
+                      N/A
+                    <% } %>
+                  </td>
+                  <td>
+                    <form action="/workshop/requests/<%= r._id %>/accept" method="POST" style="display:inline;">
+                      <button type="submit" class="accept-btn"><i class="fas fa-check"></i> Accept</button>
+                    </form>
+                    <form action="/workshop/requests/<%= r._id %>/decline" method="POST" style="display:inline;">
+                      <button type="submit" class="decline-btn"><i class="fas fa-times"></i> Decline</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </section>
+
+    <!-- 🔧 Active Jobs -->
+    <section>
+      <h2>Active Jobs</h2>
+      <% if (activeJobs.length === 0) { %>
+        <p class="no-requests">No active jobs right now.</p>
+      <% } else { %>
+        <div class="table-wrapper">
+          <table class="requests-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Description</th>
+                <th>Status</th>
+                <th>Location</th>
+                <th>Update Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% activeJobs.forEach(job => { %>
+                <tr>
+                  <td><%= job.user?.name || 'N/A' %></td>
+                  <td><%= job.description %></td>
+                  <td class="status <%= job.status.toLowerCase().replace(/\s/g,'-') %>"><%= job.status %></td>
+                  <td>
+                    <% if(job.location?.lat && job.location?.lng) { %>
+                      <a href="https://www.google.com/maps?q=<%= job.location.lat %>,<%= job.location.lng %>" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> View
+                      </a>
+                    <% } else { %>
+                      N/A
+                    <% } %>
+                  </td>
+                  <td>
+                    <form action="/workshop/update-status/<%= job._id %>" method="POST">
+                      <select name="status">
+                        <option value="Pending" <%= job.status==='Pending'?'selected':'' %>>Pending</option>
+                        <option value="In Progress" <%= job.status==='In Progress'?'selected':'' %>>In Progress</option>
+                        <option value="Completed" <%= job.status==='Completed'?'selected':'' %>>Completed</option>
+                      </select>
+                      <button type="submit"><i class="fas fa-sync"></i> Update</button>
+                    </form>
+                  </td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </section>
+
+    <!-- ✅ Completed Jobs -->
+    <section>
+      <h2>Completed Jobs</h2>
+      <% if (completedJobs.length === 0) { %>
+        <p class="no-requests">No completed jobs yet.</p>
+      <% } else { %>
+        <div class="table-wrapper">
+          <table class="requests-table">
+            <thead>
+              <tr>
+                <th>User</th>
+                <th>Description</th>
+                <th>Date</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% completedJobs.forEach(job => { %>
+                <tr>
+                  <td><%= job.user?.name || 'N/A' %></td>
+                  <td><%= job.description %></td>
+                  <td><%= new Date(job.updatedAt).toLocaleString() %></td>
+                </tr>
+              <% }) %>
+            </tbody>
+          </table>
+        </div>
+      <% } %>
+    </section>
+
+  </main>
+</body>
+</html>

@@ -1,0 +1,82 @@
+body {
+  background: #f0f4ff;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.auth-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.auth-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(146, 18, 155, 0.1);
+  width: 350px;
+}
+
+.logo {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.subtitle {
+  text-align: center;
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+form label {
+  display: block;
+  margin: 0.5rem 0 0.2rem;
+  font-weight: bold;
+}
+
+form input,
+form select {
+  width: 100%;
+  padding: 0.6rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+button {
+  width: 100%;
+  padding: 0.8rem;
+  border: none;
+  background-color: #800ea9;
+  color: white;
+  font-size: 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #95159c;
+}
+
+.switch-link {
+  text-align: center;
+  margin-top: 1rem;
+}
+.switch-link a {
+  color: #007bff;
+  text-decoration: none;
+}
+.switch-link a:hover {
+  text-decoration: underline;
+}

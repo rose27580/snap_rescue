@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SnapRescue | Choose Access</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+<style>
+  /* Base */
+  body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    height: 100vh;
+    background: url("/images/roaded.jpg") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Dark overlay */
+  body::before {
+    content: "";
+    position: absolute;
+    top:0; left:0; right:0; bottom:0;
+    background: rgba(0,0,0,0.65);
+    z-index: 0;
+  }
+
+  /* Wrapper */
+  .choice-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 2rem;
+    z-index: 1;
+    padding: 20px;
+  }
+
+  /* Card */
+  .choice-card {
+    background: rgba(255,255,255,0.15);
+    backdrop-filter: blur(12px);
+    border-radius: 20px;
+    width: 280px;
+    padding: 40px 20px;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.4);
+    text-align: center;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 1px solid rgba(255,255,255,0.2);
+  }
+
+  .choice-card:hover {
+    transform: translateY(-15px) scale(1.05);
+    box-shadow: 0 15px 45px rgba(0,0,0,0.5);
+  }
+
+  /* Card Heading */
+  .choice-card h2 {
+    font-size: 1.6rem;
+    color: #fff;
+    margin-bottom: 25px;
+    text-shadow: 1px 1px 8px rgba(0,0,0,0.5);
+  }
+
+  /* Buttons */
+  .btn {
+    display: block;
+    margin: 12px 0;
+    padding: 14px 0;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 12px;
+    background: linear-gradient(135deg, #ff416c, #ff4b2b);
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  }
+
+  .btn:hover {
+    background: linear-gradient(135deg, #ff4b2b, #ff416c);
+    transform: scale(1.08);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+  }
+
+  /* Responsive */
+  @media (max-width: 950px) {
+    .choice-wrapper {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  @media (max-width: 400px) {
+    .choice-card {
+      width: 90%;
+      padding: 30px 15px;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="choice-wrapper animate__animated animate__zoomIn">
+    <!-- User Card -->
+    <div class="choice-card animate__animated animate__fadeInLeft">
+      <h2>👤 User Access</h2>
+      <a href="/user/login" class="btn">Login</a>
+      <a href="/user/signup" class="btn">Sign Up</a>
+    </div>
+
+    <!-- Workshop Card -->
+    <div class="choice-card animate__animated animate__fadeInUp">
+      <h2>🔧 Workshop Access</h2>
+      <a href="/workshop/login" class="btn">Login</a>
+      <a href="/workshop/signup" class="btn">Sign Up</a>
+    </div>
+  </div>
+</body>
+</html>

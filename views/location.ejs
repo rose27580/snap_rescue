@@ -1,0 +1,33 @@
+<!-- views/location.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Assistance - SnapRescue</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <header>
+    <h1>SnapRescue</h1>
+    <p>Enter Your Location for Roadside Help</p>
+  </header>
+
+  <main>
+    <div class="form-container">
+      <form action="/breakdown" method="POST">
+        <label for="location">Location</label>
+        <input type="text" name="location" id="location" placeholder="Enter your location" required>
+
+        <label for="vehicle">Vehicle Type</label>
+        <input type="text" name="vehicle" id="vehicle" placeholder="e.g. Car, Bike" required>
+
+        <label for="problem">Problem Description</label>
+        <textarea name="problem" id="problem" placeholder="e.g. Flat tire, engine issue" rows="4" required></textarea>
+
+        <button type="submit">Request Assistance</button>
+      </form>
+    </div>
+  </main>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Breakdown Request</title>
+  <link rel="stylesheet" href="/css/user-breakdown.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f4f7f8;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 25px;
+    }
+    form textarea {
+      width: 100%;
+      min-height: 100px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      resize: none;
+      font-size: 14px;
+      margin-bottom: 15px;
+    }
+    form button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      border: none;
+      border-radius: 8px;
+      background-color: #007bff;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: background 0.3s ease;
+    }
+    form button:hover {
+      background-color: #0056b3;
+    }
+    #location-status {
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 500;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🚗 Report a Breakdown</h1>
+
+    <form action="/user/breakdown" method="POST">
+      <textarea name="description" placeholder="Describe the issue (e.g., flat tire, engine failure)" required></textarea>
+
+      <!-- Hidden fields for location -->
+      <input type="hidden" name="lat" id="lat" required>
+      <input type="hidden" name="lng" id="lng" required>
+
+      <button type="button" onclick="getLocation()">📍 Use My Location</button>
+      <p id="location-status">No location detected yet</p>
+
+      <button type="submit">Submit Request</button>
+    </form>
+  </div>
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          (position) => {
+            document.getElementById("lat").value = position.coords.latitude;
+            document.getElementById("lng").value = position.coords.longitude;
+            document.getElementById("location-status").innerText = "✅ Location captured!";
+          },
+          (error) => {
+            document.getElementById("location-status").innerText = "❌ Error fetching location";
+          },
+          { enableHighAccuracy: true }
+        );
+      } else {
+        alert("Geolocation is not supported by your browser");
+      }
+    }
+  </script>
+</body>
+</html>

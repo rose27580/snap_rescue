@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>User Profile</title>
+ <link rel="stylesheet" href="/css/user.css">
+
+</head>
+<body>
+  <header>
+    <h1>Your Profile</h1>
+    <nav>
+      <a href="/user/dashboard">Dashboard</a>
+      <a href="/logout">Logout</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="profile-section">
+      <form action="/user/profile" method="POST" class="profile-form">
+        <label for="name">Full Name:</label>
+        <input type="text" name="name" id="name" value="<%= user.name %>" required>
+
+        <label for="email">Email:</label>
+        <input type="email" name="email" id="email" value="<%= user.email %>" required>
+
+        <label for="phone">Phone:</label>
+        <input type="text" name="phone" id="phone" value="<%= user.phone || '' %>">
+
+        <button type="submit">Update Profile</button>
+      </form>
+    </section>
+  </main>
+</body>
+</html>
