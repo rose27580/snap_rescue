@@ -56,24 +56,6 @@ app.js – Main server file
 
 ---
 
-## ▶️ How to Run Locally
-
-1. Clone the repository  
-   git clone https://github.com/rose27580/SnapRescue.git  
-
-2. Navigate to project folder  
-   cd SnapRescue  
-
-3. Install dependencies  
-   npm install  
-
-4. Start the server  
-   node app.js  
-
-5. Open browser and visit  
-   http://localhost:3000  
-
----
 
 ## 📌 Future Improvements
 
